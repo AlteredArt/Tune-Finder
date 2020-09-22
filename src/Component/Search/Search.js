@@ -1,4 +1,5 @@
 import React from 'react';
+import './Search.css'
 
 class Search extends React.Component {
     state = {
@@ -23,8 +24,8 @@ class Search extends React.Component {
     render() {
         return (
             <div>
-                <input onChange={this.updateArtistQuery} onKeyPress={this.handleKeyPress} placeholder="Search Artist"></input>
-                <button onClick={this.searchArtist}>Search</button>
+                <input id="search" onChange={this.updateArtistQuery} onKeyPress={this.handleKeyPress} placeholder="Search Artist"></input>
+                <button id="button" onClick={this.searchArtist}>Search</button>
             </div>
         )
     }
