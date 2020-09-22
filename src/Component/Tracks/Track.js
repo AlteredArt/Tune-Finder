@@ -26,6 +26,16 @@ class Tracks extends React.Component {
         }
     }
 
+    trackIcon = track => {
+        if (!track.preview_url) {
+            return <span style={{ backgroundColor: "red" }}>N/A</span>
+        }
+        if (this.state.playing && this.state.playingPreviewUrl === track.preview_url) {
+            return <span style={{ backgroundColor: "yellow" }}>| |</span>;
+        }
+        return <span style={{ backgroundColor: "green" }}>&#9654;</span>;
+    }
+
     render() {
         const { tracks } = this.props;
         return (
@@ -34,9 +44,13 @@ class Tracks extends React.Component {
                     const { id, name, album, preview_url } = track;
 
                     return (
-                        <div key={id} onClick={this.playAudio(preview_url)}>
-                            <img src={album.images[0].url} alt="track-image" />
-                            <p>{name}</p>
+                        <div className="track" key={id} onClick={this.playAudio(preview_url)}>
+                            <img
+                                className="track-img"
+                                src={album.images[0].url}
+                                alt="track-img" />
+                            <p className="track-text">{name}</p>
+                            <p className="track-icon">{this.trackIcon(track)}</p>
                         </div>
                     )
                 })}
